@@ -10,9 +10,9 @@ class ConsoleOutputRenderer:
         print(f"no of post: {info['total_posts']}")
         print("\n")
 
-    def display_photo_links(self, photo_data):
+    def display_photo_links(self, post_photo_links):
         """Displays photo URLs"""
-        for post_number, urls in photo_data.items():
+        for post_number, urls in post_photo_links.items():
             print(f"{post_number}. {urls[0]}")
             for extra_url in urls[1:]:
                 print(f"   {extra_url}")
