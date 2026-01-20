@@ -8,12 +8,17 @@ class PaymentGateway:
         """ Reverts the payment """
         pass
 
-class StockService:
-    """ Stock service """
+
+class StockChecker:
+    """Interface for checking stock availability."""
 
     async def verify_availability(self, items):
         """ Verifies the availability of the items """
         return True
+
+
+class StockReservationManager:
+    """Interface for managing stock reservations."""
 
     async def hold_items(self, items):
         """ Holds the items """
@@ -27,12 +32,23 @@ class StockService:
         """ Cancels the reservation """
         pass
 
+
+class StockReplenisher:
+    """Interface for replenishing stock."""
+
     async def replenish_inventory(self, items):
         """ Replenishes the inventory """
         pass
 
+
+class StockService(StockChecker, StockReservationManager, StockReplenisher):
+    """Combined stock service facade that implements all stock interfaces."""
+    pass
+
+
 class AlertService:
     """ Alert service """
-    async fn dispatch_order_confirmation(self, order):
+    async def dispatch_order_confirmation(self, order):
         """ Dispatches the order confirmation """
         pass
+

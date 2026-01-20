@@ -2,6 +2,7 @@ import random
 from game_input_handler import prompt_initial_guess, prompt_retry_guess
 from game_validation import is_guess_valid
 from gaming_rules import is_guess_below_target, is_guess_above_target, is_guess_matching
+from game_display import display_too_low_hint, display_too_high_hint, display_victory_message
 
 MIN_RANDOM_NUMBER = 1
 MAX_RANDOM_NUMBER = 100
@@ -19,10 +20,10 @@ def fetch_valid_guess():
 def display_hint(guess, target_number):
     """Displays a hint based on the guess."""
     if is_guess_below_target(guess, target_number):
-        print("Too low. Guess again")
+        display_too_low_hint()
         
     elif is_guess_above_target(guess, target_number):
-        print("Too high. Guess again")
+        display_too_high_hint()
 
 def run_guessing_game():
     """Runs the number guessing game."""
@@ -34,7 +35,7 @@ def run_guessing_game():
         guess_count += 1
 
         if is_guess_matching(current_guess, target_number):
-            print("You guessed it in", guess_count, "guesses!")
+            display_victory_message(guess_count)
             break
 
         display_hint(current_guess, target_number)

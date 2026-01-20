@@ -10,12 +10,12 @@ MINIMUM_AMOUNT = 0
 class OrderHandler:
     """ Order handler """
 
-    def __init__(self):
-        """ Initializes the order handler """
-        self.payment_gateway = PaymentGateway()
-        self.stock_service = StockService()
-        self.alert_service = AlertService()
-        self.order_storage = OrderStorage()
+    def __init__(self, payment_gateway, stock_service, alert_service, order_storage):
+        """ Initializes the order handler with injected dependencies """
+        self.payment_gateway = payment_gateway
+        self.stock_service = stock_service
+        self.alert_service = alert_service
+        self.order_storage = order_storage
 
     async def submit_order(self, order):
         """ Submits the order """
