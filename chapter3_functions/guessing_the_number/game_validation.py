@@ -3,4 +3,10 @@ MAX_VALID_GUESS = 100
 
 def is_guess_valid(user_input):
     """ Checks if the user input is a valid guess """
-    return user_input.isdigit() and MIN_VALID_GUESS <= int(user_input) <= MAX_VALID_GUESS
+    is_digit = user_input.isdigit()
+    
+    if not is_digit:
+        return False
+    
+    is_within_range = MIN_VALID_GUESS <= int(user_input) <= MAX_VALID_GUESS
+    return is_within_range

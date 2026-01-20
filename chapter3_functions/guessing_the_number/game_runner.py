@@ -30,14 +30,14 @@ def run_guessing_game():
     guess_count = INITIAL_GUESS_COUNT
 
     while True:
-        guess = fetch_valid_guess()
+        current_guess = fetch_valid_guess()
         guess_count += 1
 
-        if is_guess_matching(guess, target_number):
+        if is_guess_matching(current_guess, target_number):
             print("You guessed it in", guess_count, "guesses!")
             break
 
-        display_hint(guess, target_number)
+        display_hint(current_guess, target_number)
 
 if __name__ == "__main__":
     run_guessing_game()

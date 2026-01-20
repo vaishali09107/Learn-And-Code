@@ -22,9 +22,9 @@ def compute_discount(order_amount):
     """ Computes the discount """
     return order_amount * DISCOUNT_RATE
 
-def compute_tax(amount):
+def compute_tax(order_amount):
     """ Computes the tax """
-    return amount * TAX_RATE
+    return order_amount * TAX_RATE
 
 def is_invalid_order(order_id):
     """ Checks if order is invalid """

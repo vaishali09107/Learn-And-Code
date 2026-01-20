@@ -7,7 +7,7 @@ from typing import Optional
 class PaymentOrder:
     """Represents a payment order."""
     customer_id: str
-    amount: Decimal
+    order_amount: Decimal
 
 @dataclass
 class PaymentOutcome:
@@ -20,5 +20,5 @@ class PaymentOutcome:
 class PaymentEntry:
     """Represents an entry of a completed payment."""
     customer_id: str
-    amount: Decimal
+    order_amount: Decimal
     timestamp: datetime

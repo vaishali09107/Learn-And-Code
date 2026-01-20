@@ -53,10 +53,10 @@ class OrderHandler:
 
     def _verify_order(self, order):
         """ Verifies the order """
-        is_order_empty = not order
+        is_order_missing = not order
         is_items_missing = not order.get("items")
         is_amount_invalid = order.get("total_amount", MINIMUM_AMOUNT) <= MINIMUM_AMOUNT
-        if is_order_empty or is_items_missing or is_amount_invalid:
+        if is_order_missing or is_items_missing or is_amount_invalid:
             raise ValueError("Invalid order")
 
     async def _execute_payment(self, order):

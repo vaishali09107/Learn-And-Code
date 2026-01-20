@@ -47,29 +47,29 @@ class PaymentHandler:
         if is_customer_id_missing or is_customer_id_empty:
             raise ValueError("Customer ID required")
         
-        is_amount_missing = not request.amount
-        is_amount_below_minimum = request.amount < self.MIN_AMOUNT if request.amount else True
-        if is_amount_missing or is_amount_below_minimum:
+        is_order_amount_missing = not request.order_amount
+        is_order_amount_below_minimum = request.order_amount < self.MIN_AMOUNT if request.order_amount else True
+        if is_order_amount_missing or is_order_amount_below_minimum:
             raise ValueError("Invalid amount")
 
     def _run_payment(self, request: PaymentOrder) -> None:
         """Runs the payment."""
-        self.logger.write_log(f"Executing payment of {request.amount}")
+        self.logger.write_log(f"Executing payment of {request.order_amount}")
         
-        if request.amount > PAYMENT_LIMIT:
+        if request.order_amount > PAYMENT_LIMIT:
             raise PaymentError("Limit exceeded")
 
     def _store_record(self, request: PaymentOrder) -> None:
         """Stores the payment in history."""
         self.history[self._create_transaction_id()] = PaymentEntry(
             request.customer_id,
-            request.amount,
+            request.order_amount,
             datetime.now()
         )
 
     def _send_success_notification(self, request: PaymentOrder) -> None:
         """Sends success notification to customer."""
-        self.notifier.dispatch(request.customer_id, f"Payment of {request.amount} processed")
+        self.notifier.dispatch(request.customer_id, f"Payment of {request.order_amount} processed")
 
     def _create_transaction_id(self) -> str:
         """Creates a unique transaction ID."""

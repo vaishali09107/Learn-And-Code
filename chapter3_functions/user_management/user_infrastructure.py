@@ -5,7 +5,6 @@ class DatabaseConnector:
         """Adds a record into a table."""
         pass
 
-
 db = DatabaseConnector()
 
 def save_to_file(file_path, content):
