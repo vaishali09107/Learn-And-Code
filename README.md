@@ -82,3 +82,40 @@ These guidelines define best practices for writing clean, maintainable, and scal
 - Write code that is easy to read and maintain for the whole team.
 - Ensure consistency across the entire codebase.
 - Focus on readability over complexity.
+
+---
+
+## 13. Understanding `__init__.py` Files
+
+- Every Python package (a directory that should be importable) must contain an `__init__.py` file.
+- The `__init__.py` file tells Python that the directory is a **package**, not just a regular folder.
+- It can be **empty** (just marks the directory as a package) or can contain **re-exports** to simplify imports for external consumers.
+- Example: Instead of writing `from vehicle_management_system.vehicles.car import Car`, a well-structured `__init__.py` lets you write `from vehicle_management_system.vehicles import Car`.
+- Common uses:
+  - **Re-exporting classes/functions** using `from .module import ClassName` for cleaner public API.
+  - **Defining `__all__`** to control what gets exported when someone does `from package import *`.
+
+## 14. How to Run Python Files
+
+### Running a Script Directly
+```bash
+python3 filename.py
+```
+
+### Running the Vehicle Management System
+Navigate into the project directory and run `main.py`:
+```bash
+cd vehicle_management_system
+python3 main.py
+```
+
+### Running as a Module (from the parent directory)
+```bash
+cd Learn-And-Code
+python3 -m vehicle_management_system.main
+```
+
+### Key Points
+- Always use `if __name__ == "__main__":` guard in scripts to prevent code from running on import.
+- Use `python3` (not `python`) to ensure you are using Python 3.
+- If you get `ModuleNotFoundError`, make sure you are running from the correct directory and all `__init__.py` files exist.
